@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded border border-stone-300 p-1 duration-300 focus:scale-105 focus:outline-0;
+  }
+
+  .label {
+    @apply font-semibold;
+  }
+}
