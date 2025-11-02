@@ -2,7 +2,7 @@ import FormElementsList from "./FormElementsList";
 
 const SideBar: React.FC = () => {
   return (
-    <div className="w-full rounded-xl border-2 border-dashed border-white">
+    <div className="flex h-[80%] w-full items-center border-r border-(--primary-border-color)">
       <FormElementsList />
     </div>
   );

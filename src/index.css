@@ -8,6 +8,12 @@ html,
 body,
 #root {
   height: 100%;
+  overflow: hidden;
+}
+
+:root {
+  --primary-bg-color: #ffffff;
+  --primary-border-color: #cbd5e1;
 }
 
 @layer components {

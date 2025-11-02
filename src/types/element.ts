@@ -1,3 +1,3 @@
 export type FormElementType = {
-  type: string;
+  els: string[];
 };
