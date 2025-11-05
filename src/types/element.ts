@@ -1,3 +1,4 @@
 export type FormElementType = {
-  els: string[];
+  id: number;
+  type: string | undefined;
 };
