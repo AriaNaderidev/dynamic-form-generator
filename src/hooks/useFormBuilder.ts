@@ -1,5 +1,5 @@
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getUniqueRandomNumber } from "../utils/helpers";
 import type { FormElementType } from "../types/element";
 import { formElements } from "../utils/Constants";
@@ -8,11 +8,23 @@ import { arrayMove } from "@dnd-kit/sortable";
 export const useFormBuilder = () => {
   const [elements, setElements] = useState<FormElementType[]>([]);
   const [activeId, setActiveId] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const handleDragStart = (event: DragStartEvent) =>
+  useEffect(() => {
+    document.body.style.cursor = isDragging ? "grabbing" : "auto";
+
+    return () => {
+      document.body.style.cursor = "auto";
+    };
+  }, [isDragging]);
+
+  const handleDragStart = (event: DragStartEvent): void => {
+    setIsDragging(true);
     setActiveId(event.active.id as number);
+  };
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent): void => {
+    setIsDragging(false);
     const { over, active } = event;
 
     const newFormEl: FormElementType = {
@@ -37,8 +49,6 @@ export const useFormBuilder = () => {
         return arrayMove(prev, oldIndex, newIndex);
       });
     }
-
-    // setActiveId(null);
   };
 
   return {

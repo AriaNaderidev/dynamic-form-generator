@@ -27,7 +27,7 @@ const FormElement = ({ type, id }: FormElementProps) => {
       {...attributes}
       ref={setNodeRef}
       // style={style}
-      className="w-[100px] cursor-pointer rounded-md p-2 text-center text-sm font-medium text-white shadow-[0px_0px_9px_gray] duration-200 hover:scale-[1.1]"
+      className="w-[100px] cursor-grab rounded-md p-2 text-center text-sm font-medium text-white shadow-[0px_0px_9px_gray] duration-200 hover:scale-[1.1]"
     >
       <p>{type}</p>
     </div>

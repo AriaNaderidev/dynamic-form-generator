@@ -17,7 +17,7 @@ const MainArea = () => {
   return (
     <div
       ref={setNodeRef}
-      className={`flex h-full flex-col gap-3 border-r border-(--primary-border-color) bg-(--primary-bg-color) p-6 ${isOver ? "animate-pulse duration-150" : ""} `}
+      className={`flex h-full flex-col gap-3 border-r border-(--primary-border-color) bg-(--primary-bg-color) p-4 ${isOver ? "animate-pulse duration-150" : ""} `}
     >
       <SortableContext items={elements} strategy={verticalListSortingStrategy}>
         {elements.map((el) => (
