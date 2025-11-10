@@ -34,9 +34,15 @@ const AppLayout = () => {
 
           <DragOverlay>
             {activeId !== null &&
-            elementsObj.some((el) => el.id === activeId) ? (
+            elementsObj.some(
+              (el) => (el.id as unknown as number) === activeId,
+            ) ? (
               <div className="z-9999 w-[100px] rounded-md bg-(--primary-bg-color) p-2 text-center text-xs font-bold shadow-[0px_0px_9px_-1px_#c9c9c9]">
-                {elementsObj.find((formEl) => formEl.id === activeId)?.type}
+                {
+                  elementsObj.find(
+                    (formEl) => (formEl.id as unknown as number) === activeId,
+                  )?.type
+                }
               </div>
             ) : null}
           </DragOverlay>

@@ -28,6 +28,7 @@ const PasswordInput = ({ el }: PasswordInputProps) => {
         {el.label}
       </InputLabel>
       <OutlinedInput
+        name={el.name}
         required={el.required}
         sx={sxInput}
         id={el.id as unknown as string}

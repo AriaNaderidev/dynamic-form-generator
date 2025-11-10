@@ -28,13 +28,16 @@ export const useFormBuilder = () => {
     const { over, active } = event;
 
     const newFormEl: ElementType = {
-      id: (active.id as number) + getUniqueRandomNumber(),
+      id: `${(active.id as number) + getUniqueRandomNumber()}`,
       type: elementsObj.find((formEl) => formEl.id === active.id)?.type,
       placeholder: elementsObj.find((formEl) => formEl.id === active.id)
         ?.placeholder,
       label: elementsObj.find((formEl) => formEl.id === active.id)?.label,
       options: elementsObj.find((formEl) => formEl.id === active.id)?.options,
       required: elementsObj.find((formEl) => formEl.id === active.id)?.required,
+      checked: elementsObj.find((formEl) => formEl.id === active.id)?.checked,
+      name: elementsObj.find((formEl) => formEl.id === active.id)
+        ?.name as string,
       source: "sidebar",
     };
 

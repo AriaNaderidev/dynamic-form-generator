@@ -3,26 +3,29 @@ import { getUniqueRandomNumber } from "./helpers";
 
 export const elementsObj: ElementType[] = [
   {
-    id: getUniqueRandomNumber(),
+    id: "checkbox_" + getUniqueRandomNumber(),
     type: "Checkbox",
     required: true,
     label: "Use different settings for my mobile devices",
     checked: true,
+    name: "checkbox",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "input_" + getUniqueRandomNumber(),
     type: "Input",
     required: true,
     label: "Username",
+    name: "input",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "password-input_" + getUniqueRandomNumber(),
     type: "Password",
     required: true,
     label: "Password",
+    name: "password-input",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "select_" + getUniqueRandomNumber(),
     type: "Select",
     required: true,
     label: "Email",
@@ -40,21 +43,25 @@ export const elementsObj: ElementType[] = [
         value: "mmd88@gmail.com",
       },
     ],
+    name: "select",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "text-area_" + getUniqueRandomNumber(),
     type: "Textarea",
     required: true,
     label: "Bio",
+    name: "text-area",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "radio-group_" + getUniqueRandomNumber(),
     type: "RadioGroup",
     required: true,
     label: "Gender",
+    name: "radio-group",
   },
   {
-    id: getUniqueRandomNumber(),
+    id: "reset-btn_" + getUniqueRandomNumber(),
     type: "Reset",
+    name: "reset-btn",
   },
 ];

@@ -13,6 +13,7 @@ const TextInput = ({ el }: TextInputProps) => {
         {el.label}
       </InputLabel>
       <OutlinedInput
+        name={el.name}
         required={el.required}
         id={el.id as unknown as string}
         type={el.type?.replace(" ", "")}

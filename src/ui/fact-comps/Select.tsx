@@ -26,6 +26,7 @@ const Select = ({ el }: SelectProps) => {
         {el.label}
       </InputLabel>
       <MuiSelect
+        name={el.name}
         required={el.required}
         sx={sxInput}
         labelId={(el.id as unknown as string) + "label"}

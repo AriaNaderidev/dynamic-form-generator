@@ -11,6 +11,7 @@ const CheckBox = ({ el }: CheckBoxProps) => {
       <FormControlLabel
         control={
           <Checkbox
+            name={el.name}
             defaultChecked={el.checked}
             required={el.required}
             sx={{

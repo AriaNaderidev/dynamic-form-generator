@@ -1,5 +1,5 @@
 export type ElementType = {
-  id: number;
+  id: string;
   type: string | undefined;
   source?: "sidebar" | "plus";
   label?: string;
@@ -10,4 +10,5 @@ export type ElementType = {
   }[];
   required?: boolean;
   checked?: boolean;
+  name: string;
 };
