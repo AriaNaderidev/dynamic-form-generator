@@ -8,7 +8,7 @@ import MainArea from "./MainArea";
 import SideBar from "./SideBar";
 import PreShow from "./PreShow";
 
-import { formElements } from "../utils/Constants";
+import { elementsObj } from "../utils/Constants";
 import { useFormBuilder } from "../hooks/useFormBuilder";
 import { FormBuilderProvider } from "../context/FormBuilderContext";
 
@@ -24,7 +24,7 @@ const AppLayout = () => {
           <Header />
         </header>
         <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-          <main className="relative z-10 col-start-2 row-start-2 grid grid-cols-2 bg-(--primary-bg-color)">
+          <main className="relative z-10 col-start-2 row-start-2 grid grid-cols-2 space-x-[10%] overflow-y-auto bg-(--primary-bg-color)">
             <MainArea />
             <PreShow />
           </main>
@@ -34,9 +34,9 @@ const AppLayout = () => {
 
           <DragOverlay>
             {activeId !== null &&
-            formElements.some((el) => el.id === activeId) ? (
+            elementsObj.some((el) => el.id === activeId) ? (
               <div className="z-9999 w-[100px] rounded-md bg-(--primary-bg-color) p-2 text-center text-xs font-bold shadow-[0px_0px_9px_-1px_#c9c9c9]">
-                {formElements.find((formEl) => formEl.id === activeId)?.type}
+                {elementsObj.find((formEl) => formEl.id === activeId)?.type}
               </div>
             ) : null}
           </DragOverlay>

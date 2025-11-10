@@ -1,11 +1,11 @@
 import { useDraggable } from "@dnd-kit/core";
 
-type FormElementProps = {
+type ElementProps = {
   id: number;
   type: string;
 };
 
-const FormElement = ({ type, id }: FormElementProps) => {
+const Elements = ({ type, id }: ElementProps) => {
   const {
     attributes,
     listeners,
@@ -27,11 +27,11 @@ const FormElement = ({ type, id }: FormElementProps) => {
       {...attributes}
       ref={setNodeRef}
       // style={style}
-      className="w-[100px] cursor-grab rounded-md p-2 text-center text-sm font-medium text-white shadow-[0px_0px_9px_gray] duration-200 hover:scale-[1.1]"
+      className="w-[100px] cursor-grab rounded-md p-2 text-center text-sm font-medium text-white shadow-[0px_0px_9px_black] duration-200 hover:scale-[1.1]"
     >
       <p>{type}</p>
     </div>
   );
 };
 
-export default FormElement;
+export default Elements;

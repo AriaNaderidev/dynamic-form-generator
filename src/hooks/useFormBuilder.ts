@@ -1,12 +1,12 @@
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { getUniqueRandomNumber } from "../utils/helpers";
-import type { FormElementType } from "../types/element";
-import { formElements } from "../utils/Constants";
+import type { ElementType } from "../types/element";
+import { elementsObj } from "../utils/Constants";
 import { arrayMove } from "@dnd-kit/sortable";
 
 export const useFormBuilder = () => {
-  const [elements, setElements] = useState<FormElementType[]>([]);
+  const [elements, setElements] = useState<ElementType[]>([]);
   const [activeId, setActiveId] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
@@ -27,9 +27,15 @@ export const useFormBuilder = () => {
     setIsDragging(false);
     const { over, active } = event;
 
-    const newFormEl: FormElementType = {
+    const newFormEl: ElementType = {
       id: (active.id as number) + getUniqueRandomNumber(),
-      type: formElements.find((formEl) => formEl.id === active.id)?.type,
+      type: elementsObj.find((formEl) => formEl.id === active.id)?.type,
+      placeholder: elementsObj.find((formEl) => formEl.id === active.id)
+        ?.placeholder,
+      label: elementsObj.find((formEl) => formEl.id === active.id)?.label,
+      options: elementsObj.find((formEl) => formEl.id === active.id)?.options,
+      required: elementsObj.find((formEl) => formEl.id === active.id)?.required,
+      source: "sidebar",
     };
 
     if (

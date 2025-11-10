@@ -6,24 +6,36 @@ import {
   MdOutlineModeEdit,
 } from "react-icons/md";
 
-import { HiOutlinePlus } from "react-icons/hi2";
 import { useDeleteItem } from "../hooks/useDeleteItem";
+import { HiOutlinePlus } from "react-icons/hi2";
 
-type MainElementProps = {
+import { useEffect, useRef } from "react";
+import DropdownMenu from "./DropdownMenu";
+
+interface MainElementProps {
   type: string;
   id: number;
   setElements: React.Dispatch<React.SetStateAction<FormElementType[]>>;
-};
+  setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
+  openMenuId: number | null;
+  elements: FormElementType[];
+}
 
-const MainElement = ({ type, id, setElements }: MainElementProps) => {
+const MainElement = ({
+  type,
+  id,
+  setElements,
+  setOpenMenuId,
+  openMenuId,
+  elements,
+}: MainElementProps) => {
   const {
     attributes,
     listeners,
-    setNodeRef,
+    setNodeRef: setNodeRefEl,
     transform,
     transition,
     isDragging,
-    isOver,
   } = useSortable({ id });
 
   const style = {
@@ -34,26 +46,48 @@ const MainElement = ({ type, id, setElements }: MainElementProps) => {
     zIndex: isDragging ? 9999 : "auto",
   };
 
+  const isMenuOpen = openMenuId === id;
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  const handleToggleMenu = () => {
+    setOpenMenuId(isMenuOpen ? null : id);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const plusButton = document.getElementById(`plus-${id}`);
+
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        plusButton &&
+        !plusButton.contains(e.target as Node)
+      )
+        setOpenMenuId(null);
+    };
+
+    if (isMenuOpen) document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [menuRef, isMenuOpen, setOpenMenuId, id]);
+
   const { deleteItem } = useDeleteItem({ id, setElements });
-
-  // const handleDelete = (): void => {
-  //   setElements((prev) => prev.filter((item) => item.id !== id));
-  // };
-
-  const handleOpenElementsList = () => {};
 
   return (
     <div
       {...attributes}
       {...listeners}
-      ref={setNodeRef}
+      ref={setNodeRefEl}
       style={style}
-      className="flex w-full items-center justify-between gap-1.5 p-1"
+      className="relative flex w-full items-center justify-between gap-2"
     >
       <div
-        className={`flex w-full cursor-grab items-center justify-between rounded-md border border-(--primary-border-color) bg-(--primary-bg-color) p-2 ${isOver ? "border-sky-300" : ""} font-medium text-black`}
+        className={`flex w-full cursor-grab items-center justify-between rounded-md border border-(--primary-border-color) bg-(--primary-bg-color) p-2 font-medium text-black duration-100 active:border-sky-200`}
       >
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-1">
           <span className="text-xl">
             <MdDragIndicator />
           </span>
@@ -61,10 +95,10 @@ const MainElement = ({ type, id, setElements }: MainElementProps) => {
         </div>
 
         <div
-          className="flex cursor-pointer items-center justify-between gap-2 text-xl"
+          className="flex cursor-pointer items-center justify-between text-xl"
           onPointerDown={(e) => e.stopPropagation()}
         >
-          <span className="rounded p-1 duration-200 hover:bg-stone-200">
+          <span className="rounded p-1 duration-300 hover:bg-stone-200">
             <MdOutlineModeEdit />
           </span>
           <span
@@ -75,12 +109,26 @@ const MainElement = ({ type, id, setElements }: MainElementProps) => {
           </span>
         </div>
       </div>
-      <span
-        className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full p-1 shadow-[0px_0px_3px_gray] duration-300 hover:bg-stone-100"
-        onClick={handleOpenElementsList}
-      >
-        <HiOutlinePlus />
-      </span>
+      <div>
+        {elements.map((el) => {
+          if (el.source === "sidebar") return;
+          return <div key={el.id}>{el.type}</div>;
+        })}
+      </div>
+      <div onPointerDown={(e) => e.stopPropagation()}>
+        <span
+          className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full p-1 shadow-[0px_0px_3px_gray] duration-300 hover:bg-stone-100"
+          onClick={handleToggleMenu}
+          id={`plus-${id}`}
+        >
+          <HiOutlinePlus />
+        </span>
+        {isMenuOpen && (
+          <div ref={menuRef}>
+            <DropdownMenu setElements={setElements} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

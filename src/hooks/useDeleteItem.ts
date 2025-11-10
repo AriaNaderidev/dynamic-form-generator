@@ -1,8 +1,8 @@
-import type { FormElementType } from "../types/element";
+import type { ElementType } from "../types/element";
 
 interface useDeleteItemProps {
   id: number;
-  setElements: React.Dispatch<React.SetStateAction<FormElementType[]>>;
+  setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
 }
 
 export const useDeleteItem = ({ id, setElements }: useDeleteItemProps) => {

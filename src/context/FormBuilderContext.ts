@@ -4,11 +4,11 @@ import {
   createElement,
   type ReactNode,
 } from "react";
-import type { FormElementType } from "../types/element";
+import type { ElementType } from "../types/element";
 
 interface FormBuilderContextType {
-  elements: FormElementType[];
-  setElements: React.Dispatch<React.SetStateAction<FormElementType[]>>;
+  elements: ElementType[];
+  setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
 }
 
 export const FormBuilderContext = createContext<
