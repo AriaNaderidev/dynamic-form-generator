@@ -5,15 +5,14 @@ interface CheckBoxProps {
   el: ElementType;
 }
 
-const CheckBox = ({ el }: CheckBoxProps) => {
+const CheckBox = ({ el, ...registerProps }: CheckBoxProps) => {
   return (
     <FormControl fullWidth>
       <FormControlLabel
         control={
           <Checkbox
-            name={el.name}
+            {...registerProps}
             defaultChecked={el.checked}
-            required={el.required}
             sx={{
               color: "gray",
               "&.Mui-checked": {

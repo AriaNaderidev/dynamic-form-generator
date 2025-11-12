@@ -10,5 +10,4 @@ export type ElementType = {
   }[];
   required?: boolean;
   checked?: boolean;
-  name: string;
 };

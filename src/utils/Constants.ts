@@ -8,21 +8,18 @@ export const elementsObj: ElementType[] = [
     required: true,
     label: "Use different settings for my mobile devices",
     checked: true,
-    name: "checkbox",
   },
   {
     id: "input_" + getUniqueRandomNumber(),
     type: "Input",
     required: true,
     label: "Username",
-    name: "input",
   },
   {
     id: "password-input_" + getUniqueRandomNumber(),
     type: "Password",
     required: true,
     label: "Password",
-    name: "password-input",
   },
   {
     id: "select_" + getUniqueRandomNumber(),
@@ -43,25 +40,21 @@ export const elementsObj: ElementType[] = [
         value: "mmd88@gmail.com",
       },
     ],
-    name: "select",
   },
   {
     id: "text-area_" + getUniqueRandomNumber(),
     type: "Textarea",
     required: true,
     label: "Bio",
-    name: "text-area",
   },
   {
     id: "radio-group_" + getUniqueRandomNumber(),
     type: "RadioGroup",
     required: true,
     label: "Gender",
-    name: "radio-group",
   },
   {
     id: "reset-btn_" + getUniqueRandomNumber(),
     type: "Reset",
-    name: "reset-btn",
   },
 ];

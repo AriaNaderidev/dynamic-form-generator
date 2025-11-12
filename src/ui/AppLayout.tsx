@@ -11,14 +11,19 @@ import PreShow from "./PreShow";
 import { elementsObj } from "../utils/Constants";
 import { useFormBuilder } from "../hooks/useFormBuilder";
 import { FormBuilderProvider } from "../context/FormBuilderContext";
+import { useState } from "react";
 
 const AppLayout = () => {
   // const schema = sampleSchema as FormSchema;
   const { handleDragEnd, handleDragStart, elements, setElements, activeId } =
     useFormBuilder();
 
+  const [formData, setFormData] = useState<Record<string, unknown>>({});
+
   return (
-    <FormBuilderProvider value={{ elements, setElements }}>
+    <FormBuilderProvider
+      value={{ elements, setElements, formData, setFormData }}
+    >
       <div className="grid h-screen grid-cols-[10rem_1fr] grid-rows-[5rem_1fr]">
         <header className="col-start-1 -col-end-1 flex flex-col items-center justify-between border-b border-(--primary-border-color) bg-(--primary-bg-color)">
           <Header />

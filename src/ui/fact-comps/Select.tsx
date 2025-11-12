@@ -3,46 +3,43 @@ import {
   InputLabel,
   MenuItem,
   Select as MuiSelect,
-  type SelectChangeEvent,
 } from "@mui/material";
 import type { ElementType } from "../../types/element";
-import { useState } from "react";
 import { sxInput, sxLabel } from "../../styles/globalStyle";
+import { Controller, type Control } from "react-hook-form";
 
 interface SelectProps {
   el: ElementType;
+  control: Control<Record<string, unknown>>;
 }
 
-const Select = ({ el }: SelectProps) => {
-  const [age, setAge] = useState("");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
-
+const Select = ({ el, control }: SelectProps) => {
   return (
-    <FormControl fullWidth>
-      <InputLabel id={(el.id as unknown as string) + "label"} sx={sxLabel}>
-        {el.label}
-      </InputLabel>
-      <MuiSelect
-        name={el.name}
-        required={el.required}
-        sx={sxInput}
-        labelId={(el.id as unknown as string) + "label"}
-        id={el.id as unknown as string}
-        value={age}
-        label="Age"
-        onChange={handleChange}
-      >
-        {el.options?.map((item) => (
-          <MenuItem key={item.value} value={item.value}>
-            {item.option}
-          </MenuItem>
-        ))}
-      </MuiSelect>
-    </FormControl>
+    <Controller
+      name={el.id}
+      control={control}
+      defaultValue=""
+      render={({ field }) => (
+        <FormControl fullWidth>
+          <InputLabel id={el.id + "label"} sx={sxLabel}>
+            {el.label}
+          </InputLabel>
+          <MuiSelect
+            sx={sxInput}
+            {...field}
+            labelId={el.id + "label"}
+            id={el.id}
+            label={el.label}
+          >
+            {el.options?.map((item) => (
+              <MenuItem key={item.value} value={item.value}>
+                {item.option}
+              </MenuItem>
+            ))}
+          </MuiSelect>
+        </FormControl>
+      )}
+    />
   );
 };
-
 export default Select;

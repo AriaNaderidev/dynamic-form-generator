@@ -14,7 +14,7 @@ interface PasswordInputProps {
   el: ElementType;
 }
 
-const PasswordInput = ({ el }: PasswordInputProps) => {
+const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
   const {
     showPassword,
     handleClickShowPassword,
@@ -28,7 +28,7 @@ const PasswordInput = ({ el }: PasswordInputProps) => {
         {el.label}
       </InputLabel>
       <OutlinedInput
-        name={el.name}
+        {...registerProps}
         required={el.required}
         sx={sxInput}
         id={el.id as unknown as string}

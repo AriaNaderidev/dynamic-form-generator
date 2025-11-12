@@ -9,6 +9,8 @@ import type { ElementType } from "../types/element";
 interface FormBuilderContextType {
   elements: ElementType[];
   setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
+  formData: Record<string, unknown>;
+  setFormData: (data: Record<string, unknown>) => void;
 }
 
 export const FormBuilderContext = createContext<

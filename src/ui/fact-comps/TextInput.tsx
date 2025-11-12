@@ -6,19 +6,19 @@ interface TextInputProps {
   el: ElementType;
 }
 
-const TextInput = ({ el }: TextInputProps) => {
+const TextInput = ({ el, ...registerProps }: TextInputProps) => {
   return (
     <FormControl variant="outlined" fullWidth key={el.id}>
       <InputLabel htmlFor={el.id as unknown as string} sx={sxLabel}>
         {el.label}
       </InputLabel>
       <OutlinedInput
-        name={el.name}
         required={el.required}
         id={el.id as unknown as string}
         type={el.type?.replace(" ", "")}
         label={el.label}
         sx={sxInput}
+        {...registerProps}
       />
     </FormControl>
   );
