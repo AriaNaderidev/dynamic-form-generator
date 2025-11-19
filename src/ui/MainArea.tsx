@@ -33,7 +33,6 @@ const MainArea = () => {
           strategy={verticalListSortingStrategy}
         >
           {elements.map((el) => {
-            if (el.source === "plus") return;
             return (
               <div
                 key={el.id}
@@ -42,7 +41,7 @@ const MainArea = () => {
                 <MainElement
                   elements={elements}
                   type={el.type!}
-                  id={el.id}
+                  id={el.id as unknown as number}
                   setElements={setElements}
                   openMenuId={openMenuId}
                   setOpenMenuId={setOpenMenuId}

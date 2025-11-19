@@ -13,6 +13,7 @@ const CheckBox = ({ el, ...registerProps }: CheckBoxProps) => {
           <Checkbox
             {...registerProps}
             defaultChecked={el.checked}
+            disabled={el.disabled}
             sx={{
               color: "gray",
               "&.Mui-checked": {

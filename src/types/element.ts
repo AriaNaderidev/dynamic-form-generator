@@ -1,13 +1,15 @@
 export type ElementType = {
   id: string;
-  type: string | undefined;
+  name: string;
+  type: string;
   source?: "sidebar" | "plus";
   label?: string;
-  placeholder?: string;
   options?: {
-    option: string;
+    option?: string;
     value: string | number;
   }[];
   required?: boolean;
+  disabled?: boolean;
   checked?: boolean;
+  className?: string;
 };

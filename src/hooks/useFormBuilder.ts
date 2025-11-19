@@ -27,17 +27,23 @@ export const useFormBuilder = () => {
     setIsDragging(false);
     const { over, active } = event;
 
+    const sourceEl = elementsObj.find((formEl) =>
+      `${active.id}`.includes(formEl.id),
+    );
+
+    if (!sourceEl) {
+      console.warn("Could not find element with id:", active.id);
+      return;
+    }
+
     const newFormEl: ElementType = {
       id: `${(active.id as number) + getUniqueRandomNumber()}`,
-      type: elementsObj.find((formEl) => formEl.id === active.id)?.type,
-      placeholder: elementsObj.find((formEl) => formEl.id === active.id)
-        ?.placeholder,
-      label: elementsObj.find((formEl) => formEl.id === active.id)?.label,
-      options: elementsObj.find((formEl) => formEl.id === active.id)?.options,
-      required: elementsObj.find((formEl) => formEl.id === active.id)?.required,
-      checked: elementsObj.find((formEl) => formEl.id === active.id)?.checked,
-      name: elementsObj.find((formEl) => formEl.id === active.id)
-        ?.name as string,
+      type: sourceEl!.type,
+      placeholder: sourceEl?.placeholder,
+      label: sourceEl?.label,
+      options: sourceEl?.options,
+      required: sourceEl?.required,
+      checked: sourceEl?.checked,
       source: "sidebar",
     };
 

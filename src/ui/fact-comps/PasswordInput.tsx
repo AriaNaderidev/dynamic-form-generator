@@ -2,13 +2,12 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
   OutlinedInput,
 } from "@mui/material";
 import type { ElementType } from "../../types/element";
 import { usePasswordAnimation } from "../../hooks/usePasswordAnimation";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import { sxInput, sxLabel } from "../../styles/globalStyle";
+import { sxInput } from "../../styles/globalStyle";
 
 interface PasswordInputProps {
   el: ElementType;
@@ -24,11 +23,10 @@ const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
 
   return (
     <FormControl fullWidth variant="outlined">
-      <InputLabel htmlFor={el.id as unknown as string} sx={sxLabel}>
-        {el.label}
-      </InputLabel>
+      <label htmlFor={el.id as unknown as string}>{el.label}</label>
       <OutlinedInput
         {...registerProps}
+        disabled={el.disabled}
         required={el.required}
         sx={sxInput}
         id={el.id as unknown as string}
@@ -48,7 +46,6 @@ const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
             </IconButton>
           </InputAdornment>
         }
-        label={el.label}
       />
     </FormControl>
   );

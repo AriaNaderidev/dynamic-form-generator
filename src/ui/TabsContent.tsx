@@ -1,4 +1,5 @@
 import { useTabsContext } from "../context/TabsContext";
+import FormJson from "./FormJson";
 import FormJsonData from "./FormJsonData";
 import PreForm from "./PreForm";
 
@@ -11,7 +12,9 @@ const TabsContent = () => {
         <PreForm setActive={setActive} />
       ) : active === "data" ? (
         <FormJsonData />
-      ) : null}
+      ) : (
+        <FormJson />
+      )}
     </div>
   );
 };

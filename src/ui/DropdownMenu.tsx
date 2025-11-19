@@ -9,8 +9,14 @@ interface DropdownMenuProps {
 const DropdownMenu = ({ setElements }: DropdownMenuProps) => {
   const handleAddElement = (el: ElementType): void => {
     const newItem: ElementType = {
-      id: getUniqueRandomNumber(),
-      type: el.type,
+      id: `${(el.id as unknown as number) + getUniqueRandomNumber() + "plus"}`,
+      type: elementsObj.find((formEl) => formEl.id === el.id)!.type,
+      placeholder: elementsObj.find((formEl) => formEl.id === el.id)
+        ?.placeholder,
+      label: elementsObj.find((formEl) => formEl.id === el.id)?.label,
+      options: elementsObj.find((formEl) => formEl.id === el.id)?.options,
+      required: elementsObj.find((formEl) => formEl.id === el.id)?.required,
+      checked: elementsObj.find((formEl) => formEl.id === el.id)?.checked,
       source: "plus",
     };
 
@@ -18,7 +24,7 @@ const DropdownMenu = ({ setElements }: DropdownMenuProps) => {
   };
 
   return (
-    <div className="absolute top-11 -right-18 z-9999 max-h-[200px] w-[28%] overflow-y-auto rounded-md border border-(--primary-border-color) bg-(--primary-bg-color) p-1">
+    <div className="absolute top-11 -right-18 z-9999 max-h-[200px] w-[150px] overflow-y-auto rounded-md border border-(--primary-border-color) bg-(--primary-bg-color) p-1">
       <span className="h-[20%] w-full space-y-1 text-center">
         <h1 className="font-sans text-[1.1rem] font-medium">Components</h1>
         <hr className="w-full text-(--primary-border-color)" />

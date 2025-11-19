@@ -25,6 +25,7 @@ const Select = ({ el, control }: SelectProps) => {
             {el.label}
           </InputLabel>
           <MuiSelect
+            disabled={el.disabled}
             sx={sxInput}
             {...field}
             labelId={el.id + "label"}

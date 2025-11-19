@@ -3,7 +3,6 @@
 // import type { FormSchema } from "../types/form";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 
-import Header from "./Header";
 import MainArea from "./MainArea";
 import SideBar from "./SideBar";
 import PreShow from "./PreShow";
@@ -24,12 +23,9 @@ const AppLayout = () => {
     <FormBuilderProvider
       value={{ elements, setElements, formData, setFormData }}
     >
-      <div className="grid h-screen grid-cols-[10rem_1fr] grid-rows-[5rem_1fr]">
-        <header className="col-start-1 -col-end-1 flex flex-col items-center justify-between border-b border-(--primary-border-color) bg-(--primary-bg-color)">
-          <Header />
-        </header>
+      <div className="grid h-screen grid-cols-[10rem_1fr] grid-rows-1">
         <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-          <main className="relative z-10 col-start-2 row-start-2 grid grid-cols-2 space-x-[10%] overflow-y-auto bg-(--primary-bg-color)">
+          <main className="relative z-10 col-start-2 row-start-1 grid grid-cols-2 space-x-[10%] overflow-y-auto bg-(--primary-bg-color)">
             <MainArea />
             <PreShow />
           </main>

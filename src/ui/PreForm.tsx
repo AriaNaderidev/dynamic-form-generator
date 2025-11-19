@@ -20,6 +20,9 @@ import {
   type SubmitHandler,
   type UseFormRegisterReturn,
 } from "react-hook-form";
+import Textarea from "./fact-comps/Textarea";
+import RadioGp from "./fact-comps/RadioGp";
+import Combobox from "./fact-comps/Combobox";
 
 interface PreFormProps {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
@@ -38,6 +41,23 @@ const PreForm = ({ setActive }: PreFormProps) => {
 
   if (!elements || elements.length === 0) return null;
 
+  const typeToFactoryKey: Record<string, string> = {
+    text: "Input",
+    file: "Input",
+    number: "Input",
+    date: "Input",
+    email: "Input",
+    tel: "Input",
+    time: "Input",
+    color: "Input",
+    Password: "Password",
+    Checkbox: "Checkbox",
+    Select: "Select",
+    Textarea: "Textarea",
+    RadioGroup: "RadioGroup",
+    Combobox: "Combobox",
+  };
+
   return (
     <form className="flex flex-col gap-3 p-2" onSubmit={handleSubmit(onSubmit)}>
       {elements.map((el) => {
@@ -49,14 +69,24 @@ const PreForm = ({ setActive }: PreFormProps) => {
           Password: (props) => <PasswordInput el={el} {...props} />,
           Checkbox: (props) => <CheckBox el={el} {...props} />,
           Select: () => <Select el={el} control={control} />,
+          Textarea: (props) => <Textarea el={el} {...props} />,
+          RadioGroup: (props) => <RadioGp el={el} {...props} />,
+          Combobox: (props) => <Combobox el={el} {...props} />,
         };
 
-        const factory = elementFactory[el.type as string];
+        const factoryKey = typeToFactoryKey[el.type] ?? el.type;
+
+        const factory = elementFactory[factoryKey];
+
         if (!factory) return null;
 
-        return <div key={el.id}>{factory({ ...register(el.id) })}</div>;
+        return (
+          <div key={`${el.id}_${el.type}`}>
+            {factory({ ...register(el.id) })}
+          </div>
+        );
       })}
-      <SubmitButton />
+      <SubmitButton>Submit</SubmitButton>
     </form>
   );
 };

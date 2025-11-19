@@ -1,24 +1,25 @@
-import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import { FormControl, OutlinedInput } from "@mui/material";
 import type { ElementType } from "../../types/element";
-import { sxInput, sxLabel } from "../../styles/globalStyle";
+import { sxInput } from "../../styles/globalStyle";
 
 interface TextInputProps {
   el: ElementType;
 }
 
 const TextInput = ({ el, ...registerProps }: TextInputProps) => {
+  const inputType = el.type?.toLowerCase() || "text";
+
   return (
     <FormControl variant="outlined" fullWidth key={el.id}>
-      <InputLabel htmlFor={el.id as unknown as string} sx={sxLabel}>
-        {el.label}
-      </InputLabel>
+      <label htmlFor={el.id as unknown as string}>{el.label}</label>
+
       <OutlinedInput
         required={el.required}
         id={el.id as unknown as string}
-        type={el.type?.replace(" ", "")}
-        label={el.label}
+        type={inputType}
         sx={sxInput}
         {...registerProps}
+        disabled={el.disabled}
       />
     </FormControl>
   );
