@@ -1,21 +1,19 @@
-import { useEffect } from "react";
-import type { ElementType } from "../../types/element";
-import SubmitButton from "../SubmitButton";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
+import type { ElementType } from "../../types/element";
+import { useEffect } from "react";
 
-interface EditRadioGroupFormProps {
+import SubmitButton from "../SubmitButton";
+
+interface EditComboboxForm {
   sourceEl: ElementType;
   onClose: () => void;
 }
 
-const EditRadioGroupForm = ({ sourceEl, onClose }: EditRadioGroupFormProps) => {
+const EditComboboxForm = ({ sourceEl, onClose }: EditComboboxForm) => {
   const { setElements } = useFormBuilderContext();
-  console.log(sourceEl);
 
-  const { register, handleSubmit, reset, setValue } = useForm<
-    Record<string, unknown>
-  >({
+  const { register, handleSubmit, reset } = useForm<Record<string, unknown>>({
     defaultValues: {
       label: "",
       className: "",
@@ -39,6 +37,8 @@ const EditRadioGroupForm = ({ sourceEl, onClose }: EditRadioGroupFormProps) => {
     }
   }, [sourceEl, reset]);
 
+  console.log(sourceEl.options);
+
   const updateElement = (id: string, updates: Record<string, unknown>) => {
     setElements((prev) =>
       prev.map((el) => {
@@ -48,7 +48,7 @@ const EditRadioGroupForm = ({ sourceEl, onClose }: EditRadioGroupFormProps) => {
 
         // if (updates.name && typeof updates.name === "string") {
         //   const parts = el.id.split("_");
-        //   const randomPart = parts[1];
+        //   const randomPart = parts[1]; // the number
         //   updatedEl.id = `${updates.name}_${randomPart}`;
         // }
 
@@ -98,37 +98,16 @@ const EditRadioGroupForm = ({ sourceEl, onClose }: EditRadioGroupFormProps) => {
 
       <div className="flex flex-col gap-1 p-2">
         <label className="text-sm">Options</label>
-        <div className="flex flex-col items-start gap-2 text-sm">
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="First option"
-            {...register("options.0.option", {
-              onChange: (e) => {
-                setValue("options.0.value", e.target.value);
-              },
-            })}
-          />
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="Second option"
-            {...register("options.1.option", {
-              onChange: (e) => {
-                setValue("options.1.value", e.target.value);
-              },
-            })}
-          />
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="Third option"
-            {...register("options.2.option", {
-              onChange: (e) => {
-                setValue("options.2.value", e.target.value);
-              },
-            })}
-          />
+        <div className="grid grid-cols-3 gap-2 text-sm">
+          {sourceEl.options?.map((_, id) => (
+            <input
+              key={id}
+              className="rounded p-1 shadow placeholder:text-gray-400"
+              type="text"
+              placeholder={`${id} option`}
+              {...register(`options.${id}.value`)}
+            />
+          ))}
         </div>
       </div>
 
@@ -157,4 +136,4 @@ const EditRadioGroupForm = ({ sourceEl, onClose }: EditRadioGroupFormProps) => {
   );
 };
 
-export default EditRadioGroupForm;
+export default EditComboboxForm;

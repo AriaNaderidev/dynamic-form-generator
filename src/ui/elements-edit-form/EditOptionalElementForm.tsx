@@ -5,12 +5,15 @@ import { useEffect } from "react";
 
 import SubmitButton from "../SubmitButton";
 
-interface EditSelectFormProps {
+interface EditOptionalElementFormProps {
   sourceEl: ElementType;
   onClose: () => void;
 }
 
-const EditSelectForm = ({ sourceEl, onClose }: EditSelectFormProps) => {
+const EditOptionalElementForm = ({
+  sourceEl,
+  onClose,
+}: EditOptionalElementFormProps) => {
   const { setElements } = useFormBuilderContext();
 
   const { register, handleSubmit, reset, setValue } = useForm<
@@ -98,37 +101,23 @@ const EditSelectForm = ({ sourceEl, onClose }: EditSelectFormProps) => {
 
       <div className="flex flex-col gap-1 p-2">
         <label className="text-sm">Options</label>
-        <div className="flex flex-col items-start gap-2 text-sm">
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="First option"
-            {...register("options.0.option", {
-              onChange: (e) => {
-                setValue("options.0.value", e.target.value);
-              },
-            })}
-          />
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="Second option"
-            {...register("options.1.option", {
-              onChange: (e) => {
-                setValue("options.1.value", e.target.value);
-              },
-            })}
-          />
-          <input
-            className="rounded p-1 shadow placeholder:text-gray-400"
-            type="text"
-            placeholder="Third option"
-            {...register("options.2.option", {
-              onChange: (e) => {
-                setValue("options.2.value", e.target.value);
-              },
-            })}
-          />
+        <div className="flex flex-col gap-1 p-2">
+          <label className="text-sm">Options</label>
+          <div className="grid grid-cols-3 gap-2 text-sm">
+            {sourceEl.options?.map((_, id) => (
+              <input
+                key={id}
+                className="rounded p-1 shadow placeholder:text-gray-400"
+                type="text"
+                placeholder={`${id} option`}
+                {...register(`options.${id}.option`, {
+                  onChange: (e) => {
+                    setValue(`options.${id}.value`, e.target.value);
+                  },
+                })}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -157,4 +146,4 @@ const EditSelectForm = ({ sourceEl, onClose }: EditSelectFormProps) => {
   );
 };
 
-export default EditSelectForm;
+export default EditOptionalElementForm;
