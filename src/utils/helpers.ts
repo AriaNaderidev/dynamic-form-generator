@@ -18,10 +18,7 @@ export const buildZodSchema = (elements: ElementType[]) => {
   const shape: Record<string, ZodTypeAny> = {};
 
   for (const el of elements) {
-    console.log(el);
-
     const rules = el.validation || {};
-    console.log(rules);
 
     let schema: any;
 

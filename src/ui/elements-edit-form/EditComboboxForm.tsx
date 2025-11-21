@@ -29,15 +29,12 @@ const EditComboboxForm = ({ sourceEl, onClose }: EditComboboxForm) => {
       reset({
         label: sourceEl?.label || "",
         className: sourceEl?.className || "",
-        required: sourceEl?.required || true,
         options: sourceEl?.options || [],
         disabled: sourceEl?.disabled || false,
         name: sourceEl?.name || "",
       });
     }
   }, [sourceEl, reset]);
-
-  console.log(sourceEl.options);
 
   const updateElement = (id: string, updates: Record<string, unknown>) => {
     setElements((prev) =>
