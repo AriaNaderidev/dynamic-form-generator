@@ -10,6 +10,7 @@ const Combobox = ({ el, ...registerProps }: ComboboxProps) => {
   return (
     <Autocomplete
       disabled={el.disabled}
+      className={el.className}
       sx={{
         "& .MuiOutlinedInput-root": {
           "& .MuiOutlinedInput-notchedOutline": {
@@ -24,6 +25,9 @@ const Combobox = ({ el, ...registerProps }: ComboboxProps) => {
         },
         "& .MuiInputLabel-root.Mui-focused": {
           color: "black",
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: "gray",
         },
       }}
       disablePortal

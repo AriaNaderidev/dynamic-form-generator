@@ -29,6 +29,7 @@ const RadioGp = ({ el, ...registerProps }: RadioGpProps) => {
             value={item.value}
             control={
               <Radio
+                className={el.className}
                 disabled={el.disabled}
                 {...registerProps}
                 sx={{

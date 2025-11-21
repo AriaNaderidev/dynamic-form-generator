@@ -23,6 +23,8 @@ import {
 import Textarea from "./fact-comps/Textarea";
 import RadioGp from "./fact-comps/RadioGp";
 import Combobox from "./fact-comps/Combobox";
+import { buildZodSchema } from "../utils/helpers";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface PreFormProps {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
@@ -30,9 +32,17 @@ interface PreFormProps {
 
 const PreForm = ({ setActive }: PreFormProps) => {
   const { elements, setFormData } = useFormBuilderContext();
+  const schema = buildZodSchema(elements);
 
-  const { register, handleSubmit, control } =
-    useForm<Record<string, unknown>>();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<Record<string, unknown>>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<Record<string, unknown>> = (data) => {
     setActive("data");
@@ -50,12 +60,12 @@ const PreForm = ({ setActive }: PreFormProps) => {
     tel: "Input",
     time: "Input",
     color: "Input",
-    Password: "Password",
-    Checkbox: "Checkbox",
-    Select: "Select",
-    Textarea: "Textarea",
-    RadioGroup: "RadioGroup",
-    Combobox: "Combobox",
+    password: "Password",
+    checkbox: "Checkbox",
+    select: "Select",
+    textarea: "Textarea",
+    radiogroup: "RadioGroup",
+    combobox: "Combobox",
   };
 
   return (
@@ -63,7 +73,7 @@ const PreForm = ({ setActive }: PreFormProps) => {
       {elements.map((el) => {
         const elementFactory: Record<
           string,
-          (props: UseFormRegisterReturn) => JSX.Element | JSX.Element[]
+          (props?: UseFormRegisterReturn) => JSX.Element | JSX.Element[]
         > = {
           Input: (props) => <TextInput el={el} {...props} />,
           Password: (props) => <PasswordInput el={el} {...props} />,
@@ -80,9 +90,27 @@ const PreForm = ({ setActive }: PreFormProps) => {
 
         if (!factory) return null;
 
+        if (factoryKey === "select") {
+          return (
+            <div key={`${el.id}_${el.type}`}>
+              {factory()}
+              {errors[el.id] && (
+                <p className="rounded-md bg-red-200 p-2 text-red-400">
+                  {errors[el.id]?.message}
+                </p>
+              )}
+            </div>
+          );
+        }
+
         return (
-          <div key={`${el.id}_${el.type}`}>
+          <div key={`${el.id}_${el.type}`} className="flex flex-col gap-1">
             {factory({ ...register(el.id) })}
+            {errors[el.id] && (
+              <p className="w-max rounded bg-red-100 p-1 text-red-400">
+                {errors[el.id]?.message}
+              </p>
+            )}
           </div>
         );
       })}

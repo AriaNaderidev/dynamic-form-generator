@@ -40,6 +40,8 @@ const MainElement = ({
     isDragging,
   } = useSortable({ id });
 
+  console.log(elements);
+
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const style = {

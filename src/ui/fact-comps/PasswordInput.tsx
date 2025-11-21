@@ -27,7 +27,7 @@ const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
       <OutlinedInput
         {...registerProps}
         disabled={el.disabled}
-        required={el.required}
+        className={el.className}
         sx={sxInput}
         id={el.id as unknown as string}
         type={showPassword ? "text" : "password"}

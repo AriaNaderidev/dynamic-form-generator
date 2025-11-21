@@ -3,6 +3,7 @@ import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import type { ElementType } from "../../types/element";
 import { useEffect } from "react";
 import SubmitButton from "../SubmitButton";
+import RedundantFormSection from "../RedundantFormSections";
 
 interface EditCheckboxFormProps {
   sourceEl: ElementType;
@@ -62,56 +63,11 @@ const EditCheckboxForm = ({ sourceEl, onClose }: EditCheckboxFormProps) => {
       className="flex h-full w-full flex-col gap-4 rounded-md bg-(--primary-bg-color) p-5 text-black"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h2 className="text-2xl font-medium">Edit {sourceEl?.type} field</h2>
+      <>
+        <RedundantFormSection register={register} sourceEl={sourceEl} />
 
-      <div className="flex flex-col gap-1 p-2">
-        <label className="text-sm">Label</label>
-        <input
-          className="rounded p-1.5 shadow"
-          type="text"
-          {...register("label")}
-        />
-      </div>
-
-      <div className="flex flex-col gap-1 p-2">
-        <label className="text-sm">Classname</label>
-        <input
-          className="rounded p-1.5 shadow"
-          type="text"
-          {...register("className")}
-        />
-      </div>
-
-      <div className="flex flex-col gap-1 p-2">
-        <label className="text-sm">Name</label>
-        <input
-          className="rounded p-1.5 shadow"
-          type="text"
-          {...register("name")}
-        />
-      </div>
-
-      <div className="flex w-[40%] items-center gap-2">
-        <div className="flex w-[90px] gap-2 rounded-md border p-2">
-          <label className="text-sm">Disabled</label>
-          <input
-            className="cursor-pointer rounded p-1.5 text-black"
-            type="checkbox"
-            {...register("disabled")}
-          />
-        </div>
-
-        <div className="flex w-[90px] gap-2 rounded-md border p-2">
-          <label className="text-sm">Checked</label>
-          <input
-            className="cursor-pointer rounded p-1.5 text-black"
-            type="checkbox"
-            {...register("checked")}
-          />
-        </div>
-      </div>
-
-      <SubmitButton>Save changes</SubmitButton>
+        <SubmitButton>Save changes</SubmitButton>
+      </>
     </form>
   );
 };

@@ -17,7 +17,6 @@ const editFormMap: Record<
   string,
   (props: { sourceEl: ElementType; onClose: () => void }) => JSX.Element
 > = {
-  Input: EditInputForm,
   text: EditInputForm,
   number: EditInputForm,
   date: EditInputForm,
@@ -27,12 +26,12 @@ const editFormMap: Record<
   email: EditInputForm,
   file: EditInputForm,
 
-  Password: EditPasswordInputForm,
-  Checkbox: EditCheckboxForm,
-  Textarea: EditTextareaForm,
-  Select: EditOptionalElementForm,
-  RadioGroup: EditOptionalElementForm,
-  Combobox: EditComboboxForm,
+  password: EditPasswordInputForm,
+  checkbox: EditCheckboxForm,
+  textarea: EditTextareaForm,
+  select: EditOptionalElementForm,
+  radiogroup: EditOptionalElementForm,
+  combobox: EditComboboxForm,
 };
 
 const EditElementForm = ({ id, onClose }: EditElementFormProps) => {

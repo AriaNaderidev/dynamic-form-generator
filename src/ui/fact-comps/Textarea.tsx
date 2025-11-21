@@ -11,7 +11,7 @@ const Textarea = ({ el, ...registerProps }: TextInputProps) => {
       <label htmlFor={el.id as unknown as string}>{el.label}</label>
       <TextField
         disabled={el.disabled}
-        required={el.required}
+        className={el.className}
         id={el.id as unknown as string}
         multiline
         rows={3}

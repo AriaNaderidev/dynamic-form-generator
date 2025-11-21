@@ -39,12 +39,14 @@ export const useFormBuilder = () => {
     const newFormEl: ElementType = {
       id: `${(active.id as number) + getUniqueRandomNumber()}`,
       type: sourceEl!.type,
-      placeholder: sourceEl?.placeholder,
       label: sourceEl?.label,
       options: sourceEl?.options,
-      required: sourceEl?.required,
+      validation: sourceEl?.validation,
       checked: sourceEl?.checked,
       source: "sidebar",
+      name: sourceEl?.name,
+      className: sourceEl.className,
+      disabled: sourceEl?.disabled,
     };
 
     if (

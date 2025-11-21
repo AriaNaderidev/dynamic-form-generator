@@ -11,6 +11,7 @@ const CheckBox = ({ el, ...registerProps }: CheckBoxProps) => {
       <FormControlLabel
         control={
           <Checkbox
+            className={el.className}
             {...registerProps}
             defaultChecked={el.checked}
             disabled={el.disabled}

@@ -4,35 +4,48 @@ import { getUniqueRandomNumber } from "./helpers";
 export const elementsObj: ElementType[] = [
   {
     id: "checkbox_" + getUniqueRandomNumber(),
-    name: "checkbox",
-    type: "Checkbox",
+    name: "Checkbox",
+    type: "checkbox",
     label: "Use different settings for my mobile devices",
     checked: true,
     disabled: false,
+    validation: {
+      required: true,
+    },
   },
   {
     id: "input_" + getUniqueRandomNumber(),
-    name: "input",
-    type: "Input",
-    required: true,
+    name: "Input",
+    type: "text",
+    validation: {
+      required: true,
+      useMinLength: false,
+      useMaxLength: false,
+      useMin: true,
+      useMax: true,
+    },
     label: "Username",
-
     disabled: false,
   },
   {
-    id: "password-input_" + getUniqueRandomNumber(),
-    name: "password-input",
-    type: "Password",
-    required: true,
+    id: "password_" + getUniqueRandomNumber(),
+    name: "Password",
+    type: "password",
     label: "Password",
-
+    validation: {
+      required: true,
+      useMinLength: false,
+      useMaxLength: false,
+    },
     disabled: false,
   },
   {
     id: "select_" + getUniqueRandomNumber(),
-    name: "select",
-    type: "Select",
-    required: true,
+    name: "Select",
+    type: "select",
+    validation: {
+      required: true,
+    },
     label: "Email",
     options: [
       {
@@ -48,37 +61,40 @@ export const elementsObj: ElementType[] = [
         value: "mmd88@gmail.com",
       },
     ],
-
     disabled: false,
+    defaultValue: "",
   },
   {
-    id: "text-area_" + getUniqueRandomNumber(),
-    name: "text-area",
-    type: "Textarea",
-    required: true,
+    id: "textarea_" + getUniqueRandomNumber(),
+    name: "Textarea",
+    type: "textarea",
     label: "Bio",
-
+    validation: {
+      required: true,
+      useMinLength: false,
+      useMaxLength: false,
+    },
     disabled: false,
   },
   {
-    id: "radio-group_" + getUniqueRandomNumber(),
-    name: "radio-group",
-    type: "RadioGroup",
-    required: true,
+    id: "radiogroup_" + getUniqueRandomNumber(),
+    name: "Radiogroup",
+    type: "radiogroup",
     label: "Gender",
     options: [
       { option: "Female", value: "female" },
       { option: "Male", value: "male" },
       { option: "Other", value: "other" },
     ],
-
     disabled: false,
   },
   {
     id: "combobox_" + getUniqueRandomNumber(),
-    name: "combobox",
-    type: "Combobox",
-    required: true,
+    name: "Combobox",
+    type: "combobox",
+    validation: {
+      required: true,
+    },
     label: "Language",
     options: [
       {
@@ -100,7 +116,6 @@ export const elementsObj: ElementType[] = [
         value: "German",
       },
     ],
-
     disabled: false,
   },
 ];
