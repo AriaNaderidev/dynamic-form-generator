@@ -10,22 +10,22 @@ import type { JSX } from "@emotion/react/jsx-runtime";
 
 // import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
-import TextInput from "./fact-comps/TextInput";
-import { useFormBuilderContext } from "../context/FormBuilderContext";
-import PasswordInput from "./fact-comps/PasswordInput";
-import CheckBox from "./fact-comps/CheckBox";
-import Select from "./fact-comps/Select";
+import TextInput from "../fact-comps/TextInput";
+import { useFormBuilderContext } from "../../context/FormBuilderContext";
+import PasswordInput from "../fact-comps/PasswordInput";
+import CheckBox from "../fact-comps/CheckBox";
+import Select from "../fact-comps/Select";
 import {
   useForm,
   type SubmitHandler,
   type UseFormRegisterReturn,
 } from "react-hook-form";
-import Textarea from "./fact-comps/Textarea";
-import RadioGp from "./fact-comps/RadioGp";
-import Combobox from "./fact-comps/Combobox";
-import { buildZodSchema } from "../utils/helpers";
+import Textarea from "../fact-comps/Textarea";
+import RadioGp from "../fact-comps/RadioGp";
+import Combobox from "../fact-comps/Combobox";
+import { buildZodSchema } from "../../utils/helpers";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FunctionalFormButton from "./FunctionalFormButton";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface PreFormProps {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;

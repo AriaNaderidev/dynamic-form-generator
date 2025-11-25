@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useTabsContext } from "../context/TabsContext";
+import { useTabsContext } from "../../context/TabsContext";
 
 interface TabProps {
   children: ReactNode;

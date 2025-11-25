@@ -1,7 +1,7 @@
-import { useTabsContext } from "../context/TabsContext";
-import FormJson from "./FormJson";
-import FormJsonData from "./FormJsonData";
-import PreForm from "./PreForm";
+import { useTabsContext } from "../../context/TabsContext";
+import FormJson from "../Preview-form/FormJson";
+import FormJsonData from "../Preview-form/FormJsonData";
+import PreForm from "../Preview-form/PreForm";
 
 const TabsContent = () => {
   const { active, setActive } = useTabsContext();

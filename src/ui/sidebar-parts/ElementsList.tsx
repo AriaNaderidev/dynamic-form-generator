@@ -1,4 +1,4 @@
-import { elementsObj } from "../utils/Constants";
+import { elementsObj } from "../../utils/Constants";
 import Elements from "./Elements";
 
 const ElementsList = () => {

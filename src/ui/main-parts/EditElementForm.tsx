@@ -1,12 +1,12 @@
 import type { JSX } from "@emotion/react/jsx-runtime";
-import { useFormBuilderContext } from "../context/FormBuilderContext";
-import EditInputForm from "./elements-edit-form/EditInputForm";
-import EditPasswordInputForm from "./elements-edit-form/EditPasswordInputForm";
-import type { ElementType } from "../types/element";
-import EditCheckboxForm from "./elements-edit-form/EditCheckboxForm";
-import EditTextareaForm from "./elements-edit-form/EditTextareaForm";
-import EditComboboxForm from "./elements-edit-form/EditComboboxForm";
-import EditOptionalElementForm from "./elements-edit-form/EditOptionalElementForm";
+import type { ElementType } from "../../types/element";
+import EditInputForm from "../elements-edit-form/EditInputForm";
+import EditPasswordInputForm from "../elements-edit-form/EditPasswordInputForm";
+import EditCheckboxForm from "../elements-edit-form/EditCheckboxForm";
+import EditTextareaForm from "../elements-edit-form/EditTextareaForm";
+import EditOptionalElementForm from "../elements-edit-form/EditOptionalElementForm";
+import EditComboboxForm from "../elements-edit-form/EditComboboxForm";
+import { useFormBuilderContext } from "../../context/FormBuilderContext";
 
 interface EditElementFormProps {
   id: number;

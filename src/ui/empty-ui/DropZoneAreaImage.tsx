@@ -1,4 +1,4 @@
-const DropZoneArea = () => {
+const DropZoneAreaImage = () => {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <img src="../../public/images/playground-bg.png" alt="playground-area" />
@@ -6,4 +6,4 @@ const DropZoneArea = () => {
   );
 };
 
-export default DropZoneArea;
+export default DropZoneAreaImage;

@@ -1,18 +1,18 @@
 import { useSortable } from "@dnd-kit/sortable";
-import type { ElementType } from "../types/element";
+import type { ElementType } from "../../types/element";
 import {
   MdDragIndicator,
   MdOutlineDelete,
   MdOutlineModeEdit,
 } from "react-icons/md";
 
-import { useDeleteItem } from "../hooks/useDeleteItem";
+import { useDeleteItem } from "../../hooks/useDeleteItem";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 import { useEffect, useRef, useState } from "react";
-import DropdownMenu from "./DropdownMenu";
-import Modal from "./Modal";
-import EditElementForm from "./EditElementForm";
+import DropdownMenu from "../DropdownMenu";
+import Modal from "../Modal";
+import EditElementForm from "../EditElementForm";
 
 interface MainElementProps {
   type: string;

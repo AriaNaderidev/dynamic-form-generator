@@ -3,14 +3,15 @@
 // import type { FormSchema } from "../types/form";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 
-import MainArea from "./MainArea";
-import SideBar from "./SideBar";
-import PreShow from "./PreShow";
+import MainArea from "./main-parts/MainArea";
+
+import PreShow from "./Preview-form/PreShow";
 
 import { elementsObj } from "../utils/Constants";
 import { useFormBuilder } from "../hooks/useFormBuilder";
 import { FormBuilderProvider } from "../context/FormBuilderContext";
 import { useState } from "react";
+import SideBar from "./sidebar-parts/SideBar";
 
 const AppLayout = () => {
   // const schema = sampleSchema as FormSchema;

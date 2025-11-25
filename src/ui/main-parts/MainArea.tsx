@@ -5,9 +5,9 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { useFormBuilderContext } from "../context/FormBuilderContext";
+import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import { useEffect, useRef, useState } from "react";
-import EmptyAreaText from "./EmptyAreaText";
+import EmptyAreaText from "../empty-ui/EmptyAreaText";
 
 const MainArea = () => {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);

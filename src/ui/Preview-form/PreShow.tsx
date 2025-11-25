@@ -1,9 +1,9 @@
 import { useState } from "react";
-import TabsContent from "./TabsContent";
-import TabsList from "./TabsList";
-import { TabsProvider } from "../context/TabsContext";
-import { useFormBuilderContext } from "../context/FormBuilderContext";
-import DropZoneArea from "./DropZoneArea";
+import TabsContent from "../tab-switch/TabsContent";
+import TabsList from "../tab-switch/TabsList";
+import { TabsProvider } from "../../context/TabsContext";
+import { useFormBuilderContext } from "../../context/FormBuilderContext";
+import DropZoneAreaImage from "../empty-ui/DropZoneAreaImage";
 
 const PreShow = () => {
   const [active, setActive] = useState<string | null>("prev");
@@ -18,7 +18,7 @@ const PreShow = () => {
             <TabsContent />
           </>
         ) : (
-          <DropZoneArea />
+          <DropZoneAreaImage />
         )}
       </div>
     </TabsProvider>
