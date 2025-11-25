@@ -19,6 +19,7 @@ export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
       options: [],
       disabled: "",
       name: "",
+      checked: true,
     },
   });
 
@@ -28,9 +29,10 @@ export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
         label: sourceEl?.label || "",
         className: sourceEl?.className || "",
         options: sourceEl?.options || [],
-        disabled: sourceEl?.disabled || false,
+        disabled: sourceEl?.disabled ?? false,
         name: sourceEl?.name || "",
         validation: sourceEl?.validation || {},
+        checked: sourceEl.checked ?? true,
       });
     }
   }, [sourceEl, reset]);

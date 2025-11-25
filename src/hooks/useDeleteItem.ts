@@ -7,7 +7,9 @@ interface useDeleteItemProps {
 
 export const useDeleteItem = ({ id, setElements }: useDeleteItemProps) => {
   const deleteItem = (): void => {
-    setElements((prev) => prev.filter((item) => item.id !== id));
+    setElements((prev) =>
+      prev.filter((item) => (item.id as unknown as number) !== id),
+    );
   };
 
   return {

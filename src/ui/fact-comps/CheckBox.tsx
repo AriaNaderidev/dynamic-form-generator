@@ -7,6 +7,26 @@ interface CheckBoxProps {
   hasError: boolean;
 }
 
+const sx = {
+  color: "gray",
+  "&.Mui-checked": {
+    color: "black",
+  },
+  "& .MuiSvgIcon-root": {
+    fontSize: 28,
+  },
+};
+
+const errorSx = {
+  color: "red",
+  "&.Mui-checked": {
+    color: "red",
+  },
+  "& .MuiSvgIcon-root": {
+    fontSize: 28,
+  },
+};
+
 const CheckBox = ({ el, hasError, ...registerProps }: CheckBoxProps) => {
   return (
     <FormControl fullWidth>
@@ -18,19 +38,7 @@ const CheckBox = ({ el, hasError, ...registerProps }: CheckBoxProps) => {
             {...registerProps}
             defaultChecked={el.checked}
             disabled={el.disabled}
-            sx={
-              hasError
-                ? sxLabelError
-                : {
-                    color: "gray",
-                    "&.Mui-checked": {
-                      color: "black",
-                    },
-                    "& .MuiSvgIcon-root": {
-                      fontSize: 28,
-                    },
-                  }
-            }
+            sx={hasError ? errorSx : sx}
           />
         }
         label={el.label}
