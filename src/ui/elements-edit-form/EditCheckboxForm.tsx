@@ -2,8 +2,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import type { ElementType } from "../../types/element";
 import { useEffect } from "react";
-import SubmitButton from "../SubmitButton";
 import RedundantFormSection from "../RedundantFormSections";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface EditCheckboxFormProps {
   sourceEl: ElementType;
@@ -66,7 +66,7 @@ const EditCheckboxForm = ({ sourceEl, onClose }: EditCheckboxFormProps) => {
       <>
         <RedundantFormSection register={register} sourceEl={sourceEl} />
 
-        <SubmitButton>Save changes</SubmitButton>
+        <FunctionalFormButton resetText="Clear" submitText="Submit" />
       </>
     </form>
   );

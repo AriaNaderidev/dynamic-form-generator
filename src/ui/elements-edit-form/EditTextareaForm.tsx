@@ -1,9 +1,11 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import SubmitButton from "../SubmitButton";
 import { useEffect } from "react";
+
 import type { ElementType } from "../../types/element";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
+
 import RedundantFormSection from "../RedundantFormSections";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface EditTextareaFormProps {
   sourceEl: ElementType;
@@ -59,7 +61,7 @@ const EditTextareaForm = ({ sourceEl, onClose }: EditTextareaFormProps) => {
     >
       <RedundantFormSection register={register} sourceEl={sourceEl} />
 
-      <SubmitButton>Save changes</SubmitButton>
+      <FunctionalFormButton resetText="Clear" submitText="Submit" />
     </form>
   );
 };

@@ -14,6 +14,7 @@ body,
 :root {
   --primary-bg-color: #ffffff;
   --primary-border-color: #cbd5e1;
+  --primary-btn-color: #17214bd2;
 }
 
 @layer components {

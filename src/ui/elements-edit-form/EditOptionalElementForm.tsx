@@ -3,8 +3,8 @@ import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import type { ElementType } from "../../types/element";
 import { useEffect } from "react";
 
-import SubmitButton from "../SubmitButton";
 import RedundantFormSection from "../RedundantFormSections";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface EditOptionalElementFormProps {
   sourceEl: ElementType;
@@ -95,7 +95,7 @@ const EditOptionalElementForm = ({
         </div>
       </div>
 
-      <SubmitButton>Save changes</SubmitButton>
+      <FunctionalFormButton resetText="Clear" submitText="Submit" />
     </form>
   );
 };

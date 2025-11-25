@@ -9,7 +9,7 @@ import type { JSX } from "@emotion/react/jsx-runtime";
 // } from "@mui/material";
 
 // import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import SubmitButton from "./SubmitButton";
+
 import TextInput from "./fact-comps/TextInput";
 import { useFormBuilderContext } from "../context/FormBuilderContext";
 import PasswordInput from "./fact-comps/PasswordInput";
@@ -25,6 +25,7 @@ import RadioGp from "./fact-comps/RadioGp";
 import Combobox from "./fact-comps/Combobox";
 import { buildZodSchema } from "../utils/helpers";
 import { zodResolver } from "@hookform/resolvers/zod";
+import FunctionalFormButton from "./FunctionalFormButton";
 
 interface PreFormProps {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
@@ -114,7 +115,7 @@ const PreForm = ({ setActive }: PreFormProps) => {
           </div>
         );
       })}
-      <SubmitButton>Submit</SubmitButton>
+      <FunctionalFormButton resetText="Clear" submitText="Submit" />
     </form>
   );
 };

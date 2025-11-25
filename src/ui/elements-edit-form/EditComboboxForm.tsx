@@ -3,7 +3,7 @@ import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import type { ElementType } from "../../types/element";
 import { useEffect } from "react";
 
-import SubmitButton from "../SubmitButton";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface EditComboboxForm {
   sourceEl: ElementType;
@@ -128,7 +128,7 @@ const EditComboboxForm = ({ sourceEl, onClose }: EditComboboxForm) => {
         </div>
       </div>
 
-      <SubmitButton>Save changes</SubmitButton>
+      <FunctionalFormButton resetText="Clear" submitText="Submit" />
     </form>
   );
 };

@@ -1,10 +1,11 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
-import SubmitButton from "../SubmitButton";
+
 import { useEffect } from "react";
 import type { ElementType } from "../../types/element";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
 import { FormControl, MenuItem, Select as MuiSelect } from "@mui/material";
 import RedundantFormSection from "../RedundantFormSections";
+import FunctionalFormButton from "../FunctionalFormButton";
 
 interface EditInputFormProps {
   sourceEl: ElementType;
@@ -117,7 +118,7 @@ const EditInputForm = ({ sourceEl, onClose }: EditInputFormProps) => {
         />
       </div>
 
-      <SubmitButton>Save changes</SubmitButton>
+      <FunctionalFormButton resetText="Clear" submitText="Submit" />
     </form>
   );
 };

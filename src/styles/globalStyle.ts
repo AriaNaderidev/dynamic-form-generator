@@ -12,7 +12,7 @@ export const sxInput = {
     transition: "all 0.2s ease-in-out",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "black",
+    borderColor: "var(--primary-btn-color)",
     transition: "all 0.2s ease-in-out",
   },
 };
