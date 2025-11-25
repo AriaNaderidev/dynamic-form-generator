@@ -72,17 +72,30 @@ const PreForm = ({ setActive }: PreFormProps) => {
   return (
     <form className="flex flex-col gap-3 p-2" onSubmit={handleSubmit(onSubmit)}>
       {elements.map((el) => {
+        const hasError = Boolean(errors[el.id]);
         const elementFactory: Record<
           string,
           (props?: UseFormRegisterReturn) => JSX.Element | JSX.Element[]
         > = {
-          Input: (props) => <TextInput el={el} {...props} />,
-          Password: (props) => <PasswordInput el={el} {...props} />,
-          Checkbox: (props) => <CheckBox el={el} {...props} />,
-          Select: () => <Select el={el} control={control} />,
-          Textarea: (props) => <Textarea el={el} {...props} />,
+          Input: (props) => (
+            <TextInput el={el} {...props} hasError={hasError} />
+          ),
+          Password: (props) => (
+            <PasswordInput el={el} {...props} hasError={hasError} />
+          ),
+          Checkbox: (props) => (
+            <CheckBox el={el} {...props} hasError={hasError} />
+          ),
+          Select: () => (
+            <Select el={el} control={control} hasError={hasError} />
+          ),
+          Textarea: (props) => (
+            <Textarea el={el} {...props} hasError={hasError} />
+          ),
           RadioGroup: (props) => <RadioGp el={el} {...props} />,
-          Combobox: (props) => <Combobox el={el} {...props} />,
+          Combobox: (props) => (
+            <Combobox el={el} {...props} hasError={hasError} />
+          ),
         };
 
         const factoryKey = typeToFactoryKey[el.type] ?? el.type;
@@ -107,7 +120,7 @@ const PreForm = ({ setActive }: PreFormProps) => {
         return (
           <div key={`${el.id}_${el.type}`} className="flex flex-col gap-1">
             {factory({ ...register(el.id) })}
-            {errors[el.id] && (
+            {hasError && (
               <p className="w-max rounded bg-red-100 p-1 text-red-400">
                 {errors[el.id]?.message}
               </p>

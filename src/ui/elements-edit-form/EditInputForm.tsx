@@ -35,7 +35,7 @@ const EditInputForm = ({ sourceEl, onClose }: EditInputFormProps) => {
       type: "",
       disabled: "",
       name: "",
-      validation: "",
+      validation: {},
     },
   });
 

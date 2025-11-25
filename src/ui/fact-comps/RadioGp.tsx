@@ -12,6 +12,22 @@ interface RadioGpProps {
   el: ElementType;
 }
 
+const sx = {
+  color: "gray",
+  "&.Mui-checked": {
+    color: "black",
+    transition: "all 0.2s ease-in-out",
+  },
+  "&:hover": {
+    color: "black",
+    transition: "all 0.2s ease-in-out",
+  },
+  "&.Mui-focusVisible": {
+    color: "black",
+    transition: "all 0.2s ease-in-out",
+  },
+};
+
 const RadioGp = ({ el, ...registerProps }: RadioGpProps) => {
   return (
     <FormControl>
@@ -32,21 +48,7 @@ const RadioGp = ({ el, ...registerProps }: RadioGpProps) => {
                 className={el.className}
                 disabled={el.disabled}
                 {...registerProps}
-                sx={{
-                  color: "gray",
-                  "&.Mui-checked": {
-                    color: "black",
-                    transition: "all 0.2s ease-in-out",
-                  },
-                  "&:hover": {
-                    color: "black",
-                    transition: "all 0.2s ease-in-out",
-                  },
-                  "&.Mui-focusVisible": {
-                    color: "black",
-                    transition: "all 0.2s ease-in-out",
-                  },
-                }}
+                sx={sx}
               />
             }
             label={item.option}

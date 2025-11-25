@@ -7,13 +7,18 @@ import {
 import type { ElementType } from "../../types/element";
 import { usePasswordAnimation } from "../../hooks/usePasswordAnimation";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import { sxInput } from "../../styles/globalStyle";
+import { sxInput, sxInputError } from "../../styles/globalStyle";
 
 interface PasswordInputProps {
   el: ElementType;
+  hasError: boolean;
 }
 
-const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
+const PasswordInput = ({
+  el,
+  hasError,
+  ...registerProps
+}: PasswordInputProps) => {
   const {
     showPassword,
     handleClickShowPassword,
@@ -23,12 +28,17 @@ const PasswordInput = ({ el, ...registerProps }: PasswordInputProps) => {
 
   return (
     <FormControl fullWidth variant="outlined">
-      <label htmlFor={el.id as unknown as string}>{el.label}</label>
+      <label
+        htmlFor={el.id as unknown as string}
+        className={`${hasError ? "text-red-300" : ""}`}
+      >
+        {el.label}
+      </label>
       <OutlinedInput
         {...registerProps}
         disabled={el.disabled}
         className={el.className}
-        sx={sxInput}
+        sx={hasError ? sxInputError : sxInput}
         id={el.id as unknown as string}
         type={showPassword ? "text" : "password"}
         endAdornment={

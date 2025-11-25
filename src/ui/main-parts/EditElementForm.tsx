@@ -5,7 +5,6 @@ import EditPasswordInputForm from "../elements-edit-form/EditPasswordInputForm";
 import EditCheckboxForm from "../elements-edit-form/EditCheckboxForm";
 import EditTextareaForm from "../elements-edit-form/EditTextareaForm";
 import EditOptionalElementForm from "../elements-edit-form/EditOptionalElementForm";
-import EditComboboxForm from "../elements-edit-form/EditComboboxForm";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
 
 interface EditElementFormProps {
@@ -29,9 +28,10 @@ const editFormMap: Record<
   password: EditPasswordInputForm,
   checkbox: EditCheckboxForm,
   textarea: EditTextareaForm,
+
   select: EditOptionalElementForm,
   radiogroup: EditOptionalElementForm,
-  combobox: EditComboboxForm,
+  combobox: EditOptionalElementForm,
 };
 
 const EditElementForm = ({ id, onClose }: EditElementFormProps) => {

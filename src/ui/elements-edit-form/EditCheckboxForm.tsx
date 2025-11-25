@@ -20,6 +20,7 @@ const EditCheckboxForm = ({ sourceEl, onClose }: EditCheckboxFormProps) => {
       disabled: "",
       checked: "",
       name: "",
+      validation: {},
     },
   });
 
@@ -31,6 +32,7 @@ const EditCheckboxForm = ({ sourceEl, onClose }: EditCheckboxFormProps) => {
         checked: sourceEl?.checked || false,
         disabled: sourceEl?.disabled || false,
         name: sourceEl?.name || "",
+        validation: sourceEl?.validation || {},
       });
     }
   }, [sourceEl, reset]);

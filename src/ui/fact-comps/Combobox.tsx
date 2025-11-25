@@ -4,32 +4,55 @@ import { sxInput } from "../../styles/globalStyle";
 
 interface ComboboxProps {
   el: ElementType;
+  hasError: boolean;
 }
 
-const Combobox = ({ el, ...registerProps }: ComboboxProps) => {
+const sx = {
+  "& .MuiOutlinedInput-root": {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "gray",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "black",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "gray",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "black",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "gray",
+  },
+};
+
+const errorSx = {
+  "& .MuiOutlinedInput-root": {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "red",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "red",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "red",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "red",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "red",
+  },
+};
+
+const Combobox = ({ el, hasError, ...registerProps }: ComboboxProps) => {
   return (
     <Autocomplete
       disabled={el.disabled}
       className={el.className}
-      sx={{
-        "& .MuiOutlinedInput-root": {
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "gray",
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black",
-          },
-        },
-        "& .MuiInputLabel-root": {
-          color: "gray",
-        },
-        "& .MuiInputLabel-root.Mui-focused": {
-          color: "black",
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "gray",
-        },
-      }}
+      sx={hasError ? errorSx : sx}
       disablePortal
       fullWidth
       options={el.options || []}

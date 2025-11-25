@@ -16,3 +16,19 @@ export const sxInput = {
     transition: "all 0.2s ease-in-out",
   },
 };
+
+export const sxInputError = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "red",
+    transition: "all 0.2s ease-in-out",
+  },
+
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "red",
+    transition: "all 0.2s ease-in-out",
+  },
+};
+
+export const sxLabelError = {
+  color: "red",
+};

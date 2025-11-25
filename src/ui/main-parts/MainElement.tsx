@@ -12,7 +12,7 @@ import { HiOutlinePlus } from "react-icons/hi2";
 import { useEffect, useRef, useState } from "react";
 import DropdownMenu from "../DropdownMenu";
 import Modal from "../Modal";
-import EditElementForm from "../EditElementForm";
+import EditElementForm from "./EditElementForm";
 
 interface MainElementProps {
   type: string;
