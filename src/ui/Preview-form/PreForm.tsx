@@ -26,6 +26,8 @@ import Combobox from "../fact-comps/Combobox";
 import { buildZodSchema } from "../../utils/helpers";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FunctionalFormButton from "../FunctionalFormButton";
+import type { ElementType } from "../../types/element";
+import type { Dispatch, SetStateAction } from "react";
 
 interface PreFormProps {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
@@ -33,7 +35,63 @@ interface PreFormProps {
 
 const PreForm = ({ setActive }: PreFormProps) => {
   const { elements, setFormData } = useFormBuilderContext();
+
+  if (!elements || elements.length === 0) return null;
+
+  return (
+    <DynamicForm
+      key={JSON.stringify(elements)}
+      elements={elements}
+      setActive={setActive}
+      setFormData={setFormData}
+    />
+  );
+};
+
+type DynamicFormProps = {
+  elements: ElementType[];
+  setActive: Dispatch<SetStateAction<string | null>>;
+  setFormData: (data: Record<string, unknown>) => void;
+};
+
+const DynamicForm = ({
+  elements,
+  setActive,
+  setFormData,
+}: DynamicFormProps) => {
   const schema = buildZodSchema(elements);
+
+  const defaultValues = elements.reduce<Record<string, unknown>>((acc, el) => {
+     switch (el.type) {
+      case "checkbox":
+        acc[el.id] = !!el.checked;
+        break;
+      case "text":
+      case "email":
+      case "tel":
+      case "number":
+      case "date":
+      case "time":
+      case "color":
+      case "file":
+        acc[el.id] = el.defaultValue || "";
+        break;
+      case "password":
+        acc[el.id] = el.defaultValue || "";
+        break;
+      case "textarea":
+        acc[el.id] = el.defaultValue || "";
+        break;
+      case "select":
+      case "combobox":
+        acc[el.id] = el.options?.at(0) || [];
+        break;
+      case "radiogroup":
+        acc[el.id] = el.options?.at(0) || [];
+        break;
+    }
+    return acc;
+  }, {});
 
   const {
     register,
@@ -41,6 +99,7 @@ const PreForm = ({ setActive }: PreFormProps) => {
     control,
     formState: { errors },
   } = useForm<Record<string, unknown>>({
+    defaultValues,
     resolver: zodResolver(schema),
     mode: "onChange",
   });
@@ -49,8 +108,6 @@ const PreForm = ({ setActive }: PreFormProps) => {
     setActive("data");
     setFormData(data as Record<string, unknown>);
   };
-
-  if (!elements || elements.length === 0) return null;
 
   const typeToFactoryKey: Record<string, string> = {
     text: "Input",
@@ -75,7 +132,7 @@ const PreForm = ({ setActive }: PreFormProps) => {
         const hasError = Boolean(errors[el.id]);
         const elementFactory: Record<
           string,
-          (props?: UseFormRegisterReturn) => JSX.Element | JSX.Element[]
+          (props?: UseFormRegisterReturn) => JSX.Element
         > = {
           Input: (props) => (
             <TextInput el={el} {...props} hasError={hasError} />
@@ -102,24 +159,11 @@ const PreForm = ({ setActive }: PreFormProps) => {
 
         const factory = elementFactory[factoryKey];
 
-        if (!factory) return null;
-
-        if (factoryKey === "select") {
-          return (
-            <div key={`${el.id}_${el.type}`}>
-              {factory()}
-              {errors[el.id] && (
-                <p className="rounded-md bg-red-200 p-2 text-red-400">
-                  {errors[el.id]?.message}
-                </p>
-              )}
-            </div>
-          );
-        }
-
         return (
           <div key={`${el.id}_${el.type}`} className="flex flex-col gap-1">
-            {factory({ ...register(el.id) })}
+            {factory(
+              factoryKey === "select" ? undefined : { ...register(el.id) },
+            )}
             {hasError && (
               <p className="w-max rounded bg-red-100 p-1 text-red-400">
                 {errors[el.id]?.message}

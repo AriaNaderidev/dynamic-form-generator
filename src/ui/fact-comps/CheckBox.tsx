@@ -1,6 +1,7 @@
 import { Checkbox, FormControl, FormControlLabel } from "@mui/material";
 import type { ElementType } from "../../types/element";
 import { sxLabel, sxLabelError } from "../../styles/globalStyle";
+import { useState } from "react";
 
 interface CheckBoxProps {
   el: ElementType;
@@ -28,6 +29,8 @@ const errorSx = {
 };
 
 const CheckBox = ({ el, hasError, ...registerProps }: CheckBoxProps) => {
+  const [checked] = useState(el.checked);
+
   return (
     <FormControl fullWidth>
       <FormControlLabel
@@ -35,9 +38,9 @@ const CheckBox = ({ el, hasError, ...registerProps }: CheckBoxProps) => {
         control={
           <Checkbox
             className={el.className}
-            {...registerProps}
-            defaultChecked={el.checked}
             disabled={el.disabled}
+            defaultChecked={checked}
+            {...registerProps}
             sx={hasError ? errorSx : sx}
           />
         }

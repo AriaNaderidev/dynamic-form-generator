@@ -7,7 +7,7 @@ export const elementsObj: ElementType[] = [
     name: "Checkbox",
     type: "checkbox",
     label: "Use different settings for my mobile devices",
-    checked: true,
+    checked: false,
     disabled: false,
     validation: {
       required: true,

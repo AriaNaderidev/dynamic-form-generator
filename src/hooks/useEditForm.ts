@@ -5,7 +5,7 @@ import type { ElementType } from "../types/element";
 
 interface useEditFormProps {
   sourceEl: ElementType;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
@@ -13,26 +13,26 @@ export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
 
   const { register, handleSubmit, reset } = useForm<Record<string, unknown>>({
     defaultValues: {
+      name: "",
       label: "",
       className: "",
       validation: {},
       options: [],
-      disabled: "",
-      name: "",
-      checked: true,
+      disabled: false,
+      checked: false,
     },
   });
 
   useEffect(() => {
     if (sourceEl) {
       reset({
+        name: sourceEl?.name || "",
         label: sourceEl?.label || "",
         className: sourceEl?.className || "",
         options: sourceEl?.options || [],
+        checked: sourceEl.checked ?? false,
         disabled: sourceEl?.disabled ?? false,
-        name: sourceEl?.name || "",
         validation: sourceEl?.validation || {},
-        checked: sourceEl.checked ?? true,
       });
     }
   }, [sourceEl, reset]);
@@ -50,13 +50,16 @@ export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
   };
 
   const onSubmit: SubmitHandler<Record<string, unknown>> = (data) => {
-    updateElement(sourceEl?.id as unknown as string, data);
-    onClose();
+    console.log(data);
+
+    updateElement(String(sourceEl?.id), data);
+    onClose!();
   };
 
   return {
     handleSubmit,
     register,
     onSubmit,
+    updateElement,
   };
 };
