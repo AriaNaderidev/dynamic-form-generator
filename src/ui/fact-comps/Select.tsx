@@ -13,11 +13,11 @@ import {
   sxLabelError,
 } from "../../styles/globalStyle";
 
-interface SelectProps {
+type SelectProps = {
   el: ElementType;
   control: Control<Record<string, unknown>>;
   hasError: boolean;
-}
+};
 
 const Select = ({ el, hasError, control }: SelectProps) => {
   return (

@@ -5,10 +5,10 @@ import { useEditForm } from "../../hooks/useEditForm";
 import RedundantFormSection from "../RedundantFormSections";
 import FunctionalFormButton from "../FunctionalFormButton";
 
-interface EditCheckboxFormProps {
+type EditCheckboxFormProps = {
   sourceEl: ElementType;
   onClose: () => void;
-}
+};
 
 const EditCheckboxForm = ({ sourceEl, onClose }: EditCheckboxFormProps) => {
   const { handleSubmit, onSubmit, register } = useEditForm({

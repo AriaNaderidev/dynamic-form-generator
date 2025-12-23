@@ -4,10 +4,10 @@ import RedundantFormSection from "../RedundantFormSections";
 import FunctionalFormButton from "../FunctionalFormButton";
 import { useEditForm } from "../../hooks/useEditForm";
 
-interface EditOptionalElementFormProps {
+type EditOptionalElementFormProps = {
   sourceEl: ElementType;
   onClose: () => void;
-}
+};
 
 const EditOptionalElementForm = ({
   sourceEl,

@@ -1,9 +1,9 @@
 import type { ElementType } from "../types/element";
 
-interface useDeleteItemProps {
+type useDeleteItemProps = {
   id: number;
   setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
-}
+};
 
 export const useDeleteItem = ({ id, setElements }: useDeleteItemProps) => {
   const deleteItem = (): void => {

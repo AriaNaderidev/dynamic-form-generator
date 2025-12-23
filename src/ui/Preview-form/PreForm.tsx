@@ -29,9 +29,9 @@ import FunctionalFormButton from "../FunctionalFormButton";
 import type { ElementType } from "../../types/element";
 import type { Dispatch, SetStateAction } from "react";
 
-interface PreFormProps {
+type PreFormProps = {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
-}
+};
 
 const PreForm = ({ setActive }: PreFormProps) => {
   const { elements, setFormData } = useFormBuilderContext();
@@ -62,7 +62,7 @@ const DynamicForm = ({
   const schema = buildZodSchema(elements);
 
   const defaultValues = elements.reduce<Record<string, unknown>>((acc, el) => {
-     switch (el.type) {
+    switch (el.type) {
       case "checkbox":
         acc[el.id] = !!el.checked;
         break;

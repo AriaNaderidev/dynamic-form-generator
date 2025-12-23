@@ -2,10 +2,10 @@ import { FormControl, OutlinedInput } from "@mui/material";
 import type { ElementType } from "../../types/element";
 import { sxInput, sxInputError } from "../../styles/globalStyle";
 
-interface TextInputProps {
+type TextInputProps = {
   el: ElementType;
   hasError: boolean;
-}
+};
 
 const TextInput = ({ el, hasError, ...registerProps }: TextInputProps) => {
   const inputType = el.type?.toLowerCase() || "text";

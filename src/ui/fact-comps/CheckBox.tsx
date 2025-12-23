@@ -3,10 +3,10 @@ import type { ElementType } from "../../types/element";
 import { sxLabel, sxLabelError } from "../../styles/globalStyle";
 import { useState } from "react";
 
-interface CheckBoxProps {
+type CheckBoxProps = {
   el: ElementType;
   hasError: boolean;
-}
+};
 
 const sx = {
   color: "gray",

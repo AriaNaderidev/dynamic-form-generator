@@ -9,10 +9,10 @@ import { usePasswordAnimation } from "../../hooks/usePasswordAnimation";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { sxInput, sxInputError } from "../../styles/globalStyle";
 
-interface PasswordInputProps {
+type PasswordInputProps = {
   el: ElementType;
   hasError: boolean;
-}
+};
 
 const PasswordInput = ({
   el,

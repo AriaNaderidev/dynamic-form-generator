@@ -5,10 +5,10 @@ import { useEditForm } from "../../hooks/useEditForm";
 import RedundantFormSection from "../RedundantFormSections";
 import FunctionalFormButton from "../FunctionalFormButton";
 
-interface EditPasswordInputFormProps {
+type EditPasswordInputFormProps = {
   sourceEl: ElementType;
   onClose: () => void;
-}
+};
 
 const EditPasswordInputForm = ({
   sourceEl,

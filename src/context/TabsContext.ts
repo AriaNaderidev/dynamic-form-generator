@@ -5,10 +5,10 @@ import {
   type ReactNode,
 } from "react";
 
-interface TabsContextType {
+type TabsContextType = {
   setActive: React.Dispatch<React.SetStateAction<string | null>>;
   active: string | null;
-}
+};
 
 export const TabsContext = createContext<TabsContextType | undefined>(
   undefined,
@@ -22,10 +22,10 @@ export const useTabsContext = () => {
   return context;
 };
 
-interface TabsProviderProps {
+type TabsProviderProps = {
   children: ReactNode;
   value: TabsContextType;
-}
+};
 
 export const TabsProvider = ({ children, value }: TabsProviderProps) =>
   createElement(TabsContext.Provider, { value }, children);

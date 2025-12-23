@@ -1,4 +1,4 @@
-export type BaseValidation = {
+export interface BaseValidation {
   required?: boolean;
   requiredMessage?: string;
 
@@ -20,9 +20,9 @@ export type BaseValidation = {
 
   pattern?: string;
   patternMessage?: string;
-};
+}
 
-export type ElementType = {
+export interface ElementType {
   id: string;
   name: string;
   type:
@@ -40,15 +40,15 @@ export type ElementType = {
     | "textarea"
     | "radiogroup"
     | "combobox";
-  source?: "sidebar" | "plus";
-  label?: string;
+  // source?: "sidebar" | "plus";
+  label: string;
   options?: {
     option?: string;
     value: string | number;
   }[];
-  disabled?: boolean;
+  disabled: boolean;
   checked?: boolean;
-  className?: string;
-  validation?: BaseValidation;
-  defaultValue?: string;
-};
+  className: string;
+  validation: BaseValidation;
+  defaultValue: string;
+}

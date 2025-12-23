@@ -1,13 +1,13 @@
 import React from "react";
 import { createPortal } from "react-dom";
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-}
+};
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   // useEffect(() => {
   //   if (isOpen) document.body.style.overflow = "hidden";
   //   else document.body.style.overflow = "";

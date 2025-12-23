@@ -6,12 +6,12 @@ import {
 } from "react";
 import type { ElementType } from "../types/element";
 
-interface FormBuilderContextType {
+type FormBuilderContextType = {
   elements: ElementType[];
   setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
   formData: Record<string, unknown>;
   setFormData: (data: Record<string, unknown>) => void;
-}
+};
 
 export const FormBuilderContext = createContext<
   FormBuilderContextType | undefined
@@ -27,10 +27,10 @@ export const useFormBuilderContext = () => {
   return context;
 };
 
-interface ProviderProps {
+type ProviderProps = {
   children: ReactNode;
   value: FormBuilderContextType;
-}
+};
 
 export const FormBuilderProvider = ({ children, value }: ProviderProps) =>
   createElement(FormBuilderContext.Provider, { value }, children);

@@ -7,10 +7,10 @@ import EditTextareaForm from "../elements-edit-form/EditTextareaForm";
 import EditOptionalElementForm from "../elements-edit-form/EditOptionalElementForm";
 import { useFormBuilderContext } from "../../context/FormBuilderContext";
 
-interface EditElementFormProps {
+type EditElementFormProps = {
   id: number;
   onClose: () => void;
-}
+};
 
 const editFormMap: Record<
   string,

@@ -8,9 +8,9 @@ import {
 import type { ElementType } from "../../types/element";
 import { sxLabel } from "../../styles/globalStyle";
 
-interface RadioGpProps {
+type RadioGpProps = {
   el: ElementType;
-}
+};
 
 const sx = {
   color: "gray",

@@ -2,11 +2,11 @@ import { useState } from "react";
 import { type UseFormRegister } from "react-hook-form";
 import type { ElementType } from "../types/element";
 
-interface RedundantFormSectionProps {
+type RedundantFormSectionProps = {
   register: UseFormRegister<any>;
   sourceEl: ElementType;
   selectedType?: unknown;
-}
+};
 
 const RedundantFormSection = ({
   register,

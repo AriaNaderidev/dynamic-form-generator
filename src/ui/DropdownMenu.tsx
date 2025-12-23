@@ -2,22 +2,25 @@ import { getUniqueRandomNumber } from "../utils/helpers";
 import type { ElementType } from "../types/element";
 import { elementsObj } from "../utils/Constants";
 
-interface DropdownMenuProps {
+type DropdownMenuProps = {
   setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
-}
+};
 
 const DropdownMenu = ({ setElements }: DropdownMenuProps) => {
   const handleAddElement = (el: ElementType): void => {
+    const sourceEl = elementsObj.find((formEl) => formEl.id === el.id)!;
     const newItem: ElementType = {
       id: `${(el.id as unknown as number) + getUniqueRandomNumber() + "plus"}`,
-      type: elementsObj.find((formEl) => formEl.id === el.id)!.type,
-      placeholder: elementsObj.find((formEl) => formEl.id === el.id)
-        ?.placeholder,
-      label: elementsObj.find((formEl) => formEl.id === el.id)?.label,
-      options: elementsObj.find((formEl) => formEl.id === el.id)?.options,
-      required: elementsObj.find((formEl) => formEl.id === el.id)?.required,
-      checked: elementsObj.find((formEl) => formEl.id === el.id)?.checked,
-      source: "plus",
+      name: sourceEl.name,
+      type: sourceEl.type,
+      label: sourceEl.label ?? "",
+      options: sourceEl.options ?? [],
+      checked: sourceEl.checked ?? false,
+      validation: sourceEl.validation ?? {},
+      className: sourceEl.className ?? "",
+      disabled: sourceEl.disabled ?? false,
+      defaultValue: sourceEl.defaultValue ?? "",
+      // source: "plus",
     };
 
     setElements((prev) => [...prev, newItem]);

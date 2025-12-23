@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useTabsContext } from "../../context/TabsContext";
 
-interface TabProps {
+type TabProps = {
   children: ReactNode;
   ariaLabel: string;
 }

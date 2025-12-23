@@ -5,10 +5,10 @@ import { useEditForm } from "../../hooks/useEditForm";
 import RedundantFormSection from "../RedundantFormSections";
 import FunctionalFormButton from "../FunctionalFormButton";
 
-interface EditTextareaFormProps {
+type EditTextareaFormProps = {
   sourceEl: ElementType;
   onClose: () => void;
-}
+};
 
 const EditTextareaForm = ({ sourceEl, onClose }: EditTextareaFormProps) => {
   const { handleSubmit, onSubmit, register } = useEditForm({

@@ -8,10 +8,10 @@ import { useEditForm } from "../../hooks/useEditForm";
 import RedundantFormSection from "../RedundantFormSections";
 import FunctionalFormButton from "../FunctionalFormButton";
 
-interface EditInputFormProps {
+type EditInputFormProps = {
   sourceEl: ElementType;
   onClose: () => void;
-}
+};
 
 const EditInputForm = ({ sourceEl, onClose }: EditInputFormProps) => {
   const { handleSubmit, register, onSubmit } = useEditForm({

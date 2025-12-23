@@ -14,14 +14,14 @@ import DropdownMenu from "../DropdownMenu";
 import Modal from "../Modal";
 import EditElementForm from "./EditElementForm";
 
-interface MainElementProps {
+type MainElementProps = {
   type: string;
   id: number;
   setElements: React.Dispatch<React.SetStateAction<ElementType[]>>;
   setOpenMenuId: React.Dispatch<React.SetStateAction<number | null>>;
   openMenuId: number | null;
   elements: ElementType[];
-}
+};
 
 const MainElement = ({
   type,

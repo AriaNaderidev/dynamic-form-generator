@@ -3,10 +3,10 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useFormBuilderContext } from "../context/FormBuilderContext";
 import type { ElementType } from "../types/element";
 
-interface useEditFormProps {
+type useEditFormProps = {
   sourceEl: ElementType;
   onClose?: () => void;
-}
+};
 
 export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
   const { setElements } = useFormBuilderContext();
@@ -50,8 +50,6 @@ export const useEditForm = ({ sourceEl, onClose }: useEditFormProps) => {
   };
 
   const onSubmit: SubmitHandler<Record<string, unknown>> = (data) => {
-    console.log(data);
-
     updateElement(String(sourceEl?.id), data);
     onClose!();
   };

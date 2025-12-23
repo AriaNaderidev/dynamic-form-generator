@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 
-interface FunctionalFormButtonProps {
+type FunctionalFormButtonProps = {
   resetText: string;
   submitText: string;
-}
+};
 
 const FunctionalFormButton = ({
   resetText,

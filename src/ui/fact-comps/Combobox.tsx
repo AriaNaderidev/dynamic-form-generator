@@ -2,10 +2,10 @@ import { Autocomplete, TextField } from "@mui/material";
 import type { ElementType } from "../../types/element";
 import { sxInput } from "../../styles/globalStyle";
 
-interface ComboboxProps {
+type ComboboxProps = {
   el: ElementType;
   hasError: boolean;
-}
+};
 
 const sx = {
   "& .MuiOutlinedInput-root": {

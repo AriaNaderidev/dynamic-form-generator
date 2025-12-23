@@ -4,9 +4,9 @@ type FormRendererProps = {
   schema: FormSchema;
 };
 
-const FormRenderer: React.FC<FormRendererProps> = ({ schema }) => {
+const FormRenderer = ({ schema }: FormRendererProps) => {
   return (
-    <form className="w-full h-full  shadow-[0px_0px_13px_0px_#d1d1d1] shadow-stone-200 rounded-2xl p-3 space-y-2">
+    <form className="h-full w-full space-y-2 rounded-2xl p-3 shadow-[0px_0px_13px_0px_#d1d1d1] shadow-stone-200">
       {schema.fields.map((field) => {
         switch (field.type) {
           case "text":
@@ -33,7 +33,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({ schema }) => {
                   <input
                     type={field.type}
                     name={field.name}
-                    className="ml-2 w-3.5 h-3.5"
+                    className="ml-2 h-3.5 w-3.5"
                   />
                 </label>
               </div>
@@ -44,7 +44,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({ schema }) => {
               <div key={field.name + Math.random()}>
                 <label className="label">
                   {field.name}
-                  <select name={field.name} className="border rounded ml-2">
+                  <select name={field.name} className="ml-2 rounded border">
                     {field.options?.map((option, index) => (
                       <option key={option.label + index} value={option.value}>
                         {option.label}

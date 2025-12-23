@@ -1,10 +1,10 @@
 import { FormControl, TextField } from "@mui/material";
 import type { ElementType } from "../../types/element";
 
-interface TextInputProps {
+type TextInputProps = {
   el: ElementType;
   hasError: boolean;
-}
+};
 
 const sx = {
   "& .MuiInputLabel-root": {
